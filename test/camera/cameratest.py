@@ -35,6 +35,7 @@ while True:
   # 認識した部分(顔)に枠と色をつける
   for (x,y,w,h) in faces:
     cv2.rectangle(frame, (x, y), (x+w, y+h), recognition_frame, 2)
+    print(x, y, w, h)
   
   # 認識した部分(目)に枠と色をつける
   for (x,y,w,h) in eyes:
