@@ -6,7 +6,7 @@ import os
 f = open("data.csv", "w")
 writer = csv.writer(f, lineterminator="\n")
 
-connection = obd.OBD()
+connection = obd.OBD("/dev/rfcomm0")
 print (connection.status())
 
 if connection.status() == OBDStatus.CAR_CONNECTED:
