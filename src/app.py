@@ -49,13 +49,14 @@ class SleepBreakthrough():
         """
         居眠り検出タスク
         """
-        pass
+        print("task A")
 
     def speed_detection_task(self):
         """
         スピード違反検出タスク
         """
         try:
+            print("task B")
             speed = self.obd2.get_speed()
 
             if speed > self.warning_speed:
