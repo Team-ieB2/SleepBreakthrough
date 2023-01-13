@@ -1,7 +1,6 @@
 import obd
 from obd import OBDStatus
-import time, csv
-import os
+import csv
 
 f = open("data.csv", "w")
 writer = csv.writer(f, lineterminator="\n")
@@ -17,7 +16,6 @@ if connection.status() == OBDStatus.CAR_CONNECTED:
 			speed = connection.query(obd.commands.SPEED)
 			writer.writerow([rpm.value.magnitude, speed.value.magnitude])
 			print (rpm.value.magnitude, speed.value.magnitude)
-			# time.sleep(.2)
 		except KeyboardInterrupt:
 			pass
 else:
