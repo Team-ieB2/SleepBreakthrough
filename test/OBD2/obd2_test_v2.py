@@ -62,8 +62,8 @@ if __name__ == "__main__":
     try:
         # obd2.open_csv()
         while True:
-            print(f"RPM: {obd2.get_rpm()}")
-            print(f"SPEED: {obd2.get_speed()}")
+            print(f"RPM: {obd2.get_rpm()} {type(obd2.get_rpm())}")
+            print(f"SPEED: {obd2.get_speed()} {type(obd2.get_speed())}")
     except:
         obd2.exit()
         sys.exit()
