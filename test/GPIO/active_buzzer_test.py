@@ -19,7 +19,7 @@ class ActiveBuzzer:
         GPIO.setup(self.buzzer_pin, GPIO.OUT)
         GPIO.output(self.buzzer_pin, GPIO.LOW)
 
-    def warning_sound(self, time):
+    def warning_sound(self, con_time):
         """
         Buzzerをtimeで指定した秒数の間鳴らす
 
@@ -33,7 +33,7 @@ class ActiveBuzzer:
             GPIO.output(self.buzzer_pin, GPIO.LOW)
             time.sleep(0.5)
             now = time.time()
-            if (now - start >= time):
+            if (now - start >= con_time):
                 break
 
     def destroy(self):
@@ -54,7 +54,7 @@ class ActiveBuzzer:
         self.destroy()
 
 if __name__ == '__main__':
-    active_buzzer = ActiveBuzzer(11)
+    active_buzzer = ActiveBuzzer(23)
     print("ActiveBuzzerを鳴らすテストを開始します。")
     try:
         active_buzzer.warning_sound(3)
