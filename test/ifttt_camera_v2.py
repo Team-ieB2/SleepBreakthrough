@@ -14,8 +14,6 @@ def main():
         camera_system.set_eyes()
         camera_system.surround_face()
         camera_system.surround_eyes()
-        
-        camera_system.show_camera()
 
         camera_system.wait_time()
 
