@@ -21,6 +21,7 @@ def main():
         speed = obd2_system.get_speed()
 
         if speed > warningspeed:
+            ifttt_system.ifttt_webhook("line_event", "スピード超過")
             active_buzzer_system.warning_sound(1)
 
         if speed > dangerspeed:
@@ -32,10 +33,7 @@ def main():
 
         speeds.append(speed)
 
-
-
-    ifttt_system.ifttt_webhook("line_event", "スピード超過")
-    passive_buzzer_system.coffin()
+    # passive_buzzer_system.coffin()
 
 if __name__ == "__main__":
     main()
