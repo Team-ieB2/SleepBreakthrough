@@ -22,7 +22,7 @@ class SleepBreakthrough():
         """
         コンストラクタ
         """
-        active_buzzer_pin_GPIO_number  = 11
+        active_buzzer_pin_GPIO_number  = 23
         passive_buzzer_pin_GPIO_number =  7
         ifttt_key = "bWxY8YDIyu6O_pyDNE61XJ"
         self.warning_speed = 60
