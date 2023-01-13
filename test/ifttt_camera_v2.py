@@ -30,7 +30,6 @@ def main():
             print("Eyes are open")
             sleep_time_for_eye = camera_system.reset_count_close_eye_time()
 
-        # if sleep_time - camera_system.get_time() >= 10:
         if sleep_time_for_eye >= 10:
             print("You are sleeping for eye close!")
             camera_system.set_sleep_frag()
