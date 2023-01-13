@@ -116,7 +116,7 @@ class PassiveTest:
         
 
 if __name__ == '__main__':
-    passive_test = PassiveTest(13)
+    passive_test = PassiveTest(7)
     print("演奏を開始します。")
     try:
         print("エリーゼのために")
