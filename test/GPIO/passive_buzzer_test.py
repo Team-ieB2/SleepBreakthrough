@@ -7,8 +7,6 @@ class PassiveTest:
     """
     PassiveBuzzerのテストを行うクラス。
     """
-    #演奏速度
-    speed = 1
 
     #音階
     TONES = {"c6":1047,
@@ -57,6 +55,7 @@ class PassiveTest:
             buzzer_pin (int): どのピンを用いるのか指定する。
         """
         self.buzzer_pin = buzzer_pin
+        self.speed = 1 #演奏速度
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(buzzer_pin, GPIO.OUT)
 
