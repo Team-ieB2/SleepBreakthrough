@@ -35,7 +35,7 @@ class OBD2():
         else:
             pass
 
-if __name__ == "__main":
+if __name__ == "__main__":
     obd2 = OBD2()
     # obd2.open_csv()
     while True:
