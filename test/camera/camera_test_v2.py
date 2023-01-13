@@ -9,7 +9,6 @@ class CameraTest():
         print("カメラシステムの初期化開始")
         self.time = 0.0
         self.camera = None
-        self.eye_close_time = 0
         self.head_down_count = 0
         self.ret = None
         self.frame = None
@@ -23,6 +22,7 @@ class CameraTest():
         self.eye_cascade_path = os.path.abspath("camera/learningdata/haarcascade_eye_tree_eyeglasses.xml")
         self.gray = None
         self.face_area = []
+        self.sleep_frag = False
         print("カメラシステム初期化完了")
     
     def launch_camera(self):
@@ -44,7 +44,7 @@ class CameraTest():
             cv2.rectangle(self.frame, (x, y), (x+w, y+h), self.eye_frame, 2)
 
     def count_close_eye_time(self):
-        self.count_close_eye_time = time.time()
+        return time.perf_counter()
     
 
     def count_head_down(self):
@@ -52,18 +52,18 @@ class CameraTest():
 
 
     def is_eye_close(self):
-        if len(self.get_eyes()) == 0:
+        if len(self.get_eyes()) == 0 and len(self.get_faces()) == 1:
             return True
 
     def is_head_down(self):
         if len(self.get_faces()) != 0:
             for (x, y, w, h) in self.get_faces():
-                self.add_face_area(h)
+                self.add_face_area(y)
                 self.culc_face_avg(self.get_face_area())
 
-            self.set_face_diff(h - self.get_face_avg())
+            self.set_face_diff(y - self.get_face_avg())
 
-        if self.get_face_diff() > 10:
+        if self.get_face_diff() > 30:
             return True
 
     def add_face_area(self, area):
@@ -76,16 +76,19 @@ class CameraTest():
         self.faces = self.face_cascade.detectMultiScale(self.gray, scaleFactor=1.1, minSize=(50,50))
     
     def set_eyes(self):
-        self.eyes = self.eye_cascade.detectMultiScale(self.gray)
+        self.eyes = self.eye_cascade.detectMultiScale(self.gray, minSize=(50,50))
 
     def set_face_diff(self, diff):
         self.face_diff = diff
 
     def set_time(self):
-        self.time = time.time()
+        self.time = time.perf_counter()
 
-    def get_count_close_eye_time(self):
-        return self.count_close_eye_time
+    def set_sleep_frag(self):
+        self.sleep_frag = True
+
+    def get_count_close_eye(self):
+        return self.count_close_eye
     
     def get_head_down_count(self):
         return self.head_down_count
@@ -107,12 +110,22 @@ class CameraTest():
 
     def get_time(self):
         return self.time
+    
+    def get_sleep_frag(self):
+        return self.sleep_frag
 
     def reset_count_close_eye_time(self):
-        self.eye_close_time = 0
+        return 0
 
     def reset_count_head_down(self):
         self.head_down_count = 0
 
+    def camera_release(self):
+        self.camera.release()
+
     def wait_time(self):
         time.sleep(0.2)
+
+    def show_camera(self):
+        cv2.imshow("camera", self.frame)
+        cv2.waitKey(1)
