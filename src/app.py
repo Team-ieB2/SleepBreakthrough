@@ -14,19 +14,19 @@ class SleepBreakthrough():
         """
         pass
 
-    def run():
+    def run(self):
         """
         アプリケーションを起動する
         """
         pass
 
-    def exit():
+    def exit(self):
         """
         アプリケーションを終了する
         """
         pass
 
-    def _exit():
+    def _exit(self):
         """
         アプリケーションを強制終了する
         """
