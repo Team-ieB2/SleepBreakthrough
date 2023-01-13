@@ -12,6 +12,7 @@ from obd2 import OBD2
 from ifttt import Ifttt
 import RPi.GPIO as GPIO
 from threading import Thread
+import time
 import sys
 
 class SleepBreakthrough():
@@ -49,14 +50,12 @@ class SleepBreakthrough():
         """
         居眠り検出タスク
         """
-        print("task A")
 
     def speed_detection_task(self):
         """
         スピード違反検出タスク
         """
         try:
-            print("task B")
             speed = self.obd2.get_speed()
 
             if speed > self.warning_speed:
@@ -72,6 +71,7 @@ class SleepBreakthrough():
                     pass
 
             self.speeds.append(speed)
+            time.sleep(0.25)
         except:
             pass
 
