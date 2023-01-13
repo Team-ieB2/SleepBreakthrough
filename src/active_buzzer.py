@@ -46,7 +46,6 @@ class ActiveBuzzer:
         終了時動作させる。
         """
         GPIO.output(self.buzzer_pin, GPIO.LOW)
-        GPIO.cleanup()
 
     def motion(self, time):
         """
