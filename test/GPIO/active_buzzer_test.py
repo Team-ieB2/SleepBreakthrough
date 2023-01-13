@@ -67,3 +67,4 @@ if __name__ == '__main__':
     
     finally:
         print("これでテストを終了します。")
+        active_buzzer.destroy()
