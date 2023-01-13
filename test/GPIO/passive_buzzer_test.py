@@ -47,6 +47,7 @@ class PassiveTest:
         ["a4",32],["a4",16],["c6",16],["b5",16],["c6",16],["b5",16],["c6",16],
         ["a4",32],["a4",16],["c6",16],["b5",16],["c6",16],["b5",16],["c6",16],["p",8]
         ]
+    
     def __init__(self,buzzer_pin):
         """
         PassiveTestクラスのコンストラクタ
@@ -115,7 +116,7 @@ class PassiveTest:
         
 
 if __name__ == '__main__':
-    passive_test = PassiveTest(11)
+    passive_test = PassiveTest(7)
     print("演奏を開始します。")
     try:
         print("エリーゼのために")
