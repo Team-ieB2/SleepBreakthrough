@@ -27,6 +27,7 @@ class SleepBreakthrough():
         ifttt_key = "bWxY8YDIyu6O_pyDNE61XJ"
         self.warning_speed = 60
         self.danger_speed = 80
+        self.speeds = []
 
         self.active_buzzer = ActiveBuzzer(active_buzzer_pin_GPIO_number)
         self.passive_buzzer = PassiveBuzzer(passive_buzzer_pin_GPIO_number)
@@ -54,7 +55,21 @@ class SleepBreakthrough():
         """
         スピード違反検出タスク
         """
-        pass
+        speed = self.obd2.get_speed()
+
+        if speed > self.warning_speed:
+            self.active_buzzer.warning_sound(1)
+            self.ifttt.ifttt_webhook("line_event", "スピード超過")
+
+        if speed > self.warning_speed:
+            self.active_buzzer.warning_sound(3)
+            self.ifttt.ifttt_webhook("line_event", "スピード超過")
+
+        if len(self.speeds) != 0:
+            if speed - self.speeds[-1] >= 10:
+                pass
+
+        self.speeds.append(speed)
 
     def exit(self):
         """
