@@ -11,6 +11,7 @@ class CameraTest():
         self.camera = None
         self.head_down_count = 0
         self.ret = None
+        self.back = None
         self.frame = None
         self.faces = None
         self.face_diff = 0
@@ -27,6 +28,9 @@ class CameraTest():
     
     def launch_camera(self):
         self.camera = cv2.VideoCapture(0)
+        for _ in range(30):
+            self.ret, self.back = self.camera.read()
+        
         self.ret, self.frame = self.camera.read()
         if not self.ret:
             return True

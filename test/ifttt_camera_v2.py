@@ -15,7 +15,7 @@ def main():
         camera_system.surround_face()
         camera_system.surround_eyes()
 
-        camera_system.wait_time()
+        # camera_system.wait_time()
 
         if camera_system.is_eye_close():
             print("Eyes are colsing")
