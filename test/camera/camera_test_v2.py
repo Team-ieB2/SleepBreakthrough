@@ -125,7 +125,3 @@ class CameraTest():
 
     def wait_time(self):
         time.sleep(0.2)
-
-    def show_camera(self):
-        cv2.imshow("camera", self.frame)
-        cv2.waitKey(1)
