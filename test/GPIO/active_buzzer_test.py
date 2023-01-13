@@ -15,7 +15,7 @@ class ActiveBuzzer:
             buzzer_pin (int): どのピンを用いるのか指定する。
         """
         self.buzzer_pin = buzzer_pin
-        GPIO.setmode(GPIO.BOARD)       
+        GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.buzzer_pin, GPIO.OUT)
         GPIO.output(self.buzzer_pin, GPIO.LOW)
 
@@ -41,7 +41,7 @@ class ActiveBuzzer:
         終了時動作させる。
         """
         GPIO.output(self.buzzer_pin, GPIO.LOW)
-        GPIO.cleanup()                     
+        GPIO.cleanup()
 
     def motion(self, time):
         """
@@ -52,18 +52,18 @@ class ActiveBuzzer:
         """
         self.warning_sound(time)
         self.destroy()
-    
+
 if __name__ == '__main__':
     active_buzzer = ActiveBuzzer(11)
     print("ActiveBuzzerを鳴らすテストを開始します。")
     try:
         active_buzzer.warning_sound(3)
-    
+
     except KeyboardInterrupt:
         print("強制終了されました。")
-    
+
     else:
         print("正常に動作しました。")
-    
+
     finally:
         print("これでテストを終了します。")
