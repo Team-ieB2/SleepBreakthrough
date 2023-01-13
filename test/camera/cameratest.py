@@ -100,13 +100,13 @@ def camera_recognition():
       # cv2.rectangle(frame, (x, y), (x+w, y+h), recognition_frame, 2)
       cv2.rectangle(frame, (x, y), (x+w, y+h), face_frame, 2)
       # print(w*h)
-    
+
     # 認識した部分(目)に枠と色をつける
     for (x,y,w,h) in eyes:
       # cv2.rectangle(frame, (x, y), (x+w, y+h), recognition_frame, 2)
       cv2.rectangle(frame, (x, y), (x+w, y+h), eye_frame, 2)
 
-    cv2.imshow("FaceRecognitionSystem", frame)
+    # cv2.imshow("FaceRecognitionSystem", frame)
     key = cv2.waitKey(1)
 
     # 目を認識できた場合
@@ -122,7 +122,7 @@ def camera_recognition():
           times = 0
         else:
           eye_close_count = 0
-        
+
         if eye_close_count >= 100:
           frag = True
           break
@@ -135,14 +135,14 @@ def camera_recognition():
           face_frame_area.append(w * h)
           frame_avg = np.mean(face_frame_area)
           index += 1
-      
+
         if index >= 2 and len(face_frame_area) > 2:
           print(head_down_count)
           # face_diff = face_frame_area[index-1] - face_frame_area[index-2]
           face_diff =  w * h - frame_avg
           if face_diff < -10000:
             head_down_count += 1
-            
+
           else:
             face_frame_area = []
             index = 0
