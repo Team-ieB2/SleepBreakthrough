@@ -1,3 +1,9 @@
+"""
+obd2.py
+OBD2 Controller.
+
+Copyright (C) 2023 Team ieB2. All Rights Reserved.
+"""
 import obd
 from obd import OBDStatus
 import csv
@@ -19,7 +25,7 @@ class OBD2():
 
     def open_csv(self, file_name: str = "data.csv"):
         try:
-            f = open(file_name, "w")
+            f = open("./csv/" + file_name, "w")
             self.writer = csv.writer(f, lineterminator="\n")
         except:
             pass
@@ -32,7 +38,7 @@ class OBD2():
         except:
             pass
 
-    def get_rpm(self):
+    def get_rpm(self) -> int:
         try:
             if self.connection.status() == OBDStatus.CAR_CONNECTED:
                 rpm = self.connection.query(obd.commands.RPM)
@@ -43,7 +49,7 @@ class OBD2():
         except:
             pass
 
-    def get_speed(self):
+    def get_speed(self) -> int:
         try:
             if self.connection.status() == OBDStatus.CAR_CONNECTED:
                 speed = self.connection.query(obd.commands.SPEED)
@@ -57,7 +63,7 @@ class OBD2():
 if __name__ == "__main__":
     obd2 = OBD2()
     try:
-        # obd2.open_csv()
+        obd2.open_csv()
         while True:
             print(f"RPM: {obd2.get_rpm()}")
             print(f"SPEED: {obd2.get_speed()}")
