@@ -55,21 +55,24 @@ class SleepBreakthrough():
         """
         スピード違反検出タスク
         """
-        speed = self.obd2.get_speed()
+        try:
+            speed = self.obd2.get_speed()
 
-        if speed > self.warning_speed:
-            self.active_buzzer.warning_sound(1)
-            self.ifttt.ifttt_webhook("line_event", "スピード超過")
+            if speed > self.warning_speed:
+                self.active_buzzer.warning_sound(1)
+                self.ifttt.ifttt_webhook("line_event", "スピード超過")
 
-        if speed > self.warning_speed:
-            self.active_buzzer.warning_sound(3)
-            self.ifttt.ifttt_webhook("line_event", "スピード超過")
+            if speed > self.warning_speed:
+                self.active_buzzer.warning_sound(3)
+                self.ifttt.ifttt_webhook("line_event", "スピード超過")
 
-        if len(self.speeds) != 0:
-            if speed - self.speeds[-1] >= 10:
-                pass
+            if len(self.speeds) != 0:
+                if speed - self.speeds[-1] >= 10:
+                    pass
 
-        self.speeds.append(speed)
+            self.speeds.append(speed)
+        except:
+            pass
 
     def exit(self):
         """
