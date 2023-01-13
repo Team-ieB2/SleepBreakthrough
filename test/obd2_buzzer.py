@@ -22,17 +22,20 @@ def main():
 
         if speed > warningspeed:
             active_buzzer_system.warning_sound(1)
-        
+
         if speed > dangerspeed:
             break
 
         if len(speeds) != 0:
             if speed - speeds[-1] >= 10:
                 break
-            
-        speeds.append(speed)
-        
 
-    
+        speeds.append(speed)
+
+
+
     ifttt_system.ifttt_webhook("line_event", "スピード超過")
     passive_buzzer_system.coffin()
+
+if __name__ == "__main__":
+    main()
