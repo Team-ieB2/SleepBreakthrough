@@ -50,8 +50,8 @@ class CameraTest():
         return time.perf_counter()
 
 
-    def count_head_down(self):
-        self.head_down_count += 1
+    def count_head_down_time(self):
+        return time.perf_counter()
 
 
     def is_eye_close(self):
@@ -59,14 +59,7 @@ class CameraTest():
             return True
 
     def is_head_down(self):
-        if len(self.get_faces()) != 0:
-            for (x, y, w, h) in self.get_faces():
-                self.add_face_area(y)
-                self.calc_face_avg(self.get_face_area())
-
-            self.set_face_diff(y - self.get_face_avg())
-
-        if self.get_face_diff() > 30:
+        if len(self.get_faces()) == 0:
             return True
 
     def add_face_area(self, area):
@@ -120,8 +113,8 @@ class CameraTest():
     def reset_count_close_eye_time(self):
         return 0
 
-    def reset_count_head_down(self):
-        self.head_down_count = 0
+    def reset_count_head_down_time(self):
+        return 0
 
     def camera_release(self):
         self.camera.release()
