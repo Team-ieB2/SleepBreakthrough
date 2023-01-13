@@ -1,11 +1,16 @@
+"""
+active_buzzer.py
+Active Buzzer Controller.
+
+Copyright (C) 2023 Team ieB2. All Rights Reserved.
+"""
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
 import RPi.GPIO as GPIO
 import time
 
 class ActiveBuzzer:
     """
-    ActiveBuzzerのテストを行うクラス
+    ActiveBuzzerのクラス
     """
     def __init__(self,buzzer_pin):
         """
@@ -52,19 +57,3 @@ class ActiveBuzzer:
         """
         self.warning_sound(time)
         self.destroy()
-
-if __name__ == '__main__':
-    active_buzzer = ActiveBuzzer(11)
-    print("ActiveBuzzerを鳴らすテストを開始します。")
-    try:
-        active_buzzer.warning_sound(3)
-
-    except KeyboardInterrupt:
-        print("強制終了されました。")
-
-    else:
-        print("正常に動作しました。")
-
-    finally:
-        print("これでテストを終了します。")
-        active_buzzer.destroy()

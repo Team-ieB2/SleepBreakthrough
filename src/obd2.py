@@ -4,6 +4,7 @@ OBD2 Controller.
 
 Copyright (C) 2023 Team ieB2. All Rights Reserved.
 """
+# -*- coding: utf-8 -*-
 import obd
 from obd import OBDStatus
 import csv
@@ -59,14 +60,3 @@ class OBD2():
                 pass
         except:
             pass
-
-if __name__ == "__main__":
-    obd2 = OBD2()
-    try:
-        obd2.open_csv()
-        while True:
-            print(f"RPM: {obd2.get_rpm()}")
-            print(f"SPEED: {obd2.get_speed()}")
-    except:
-        obd2.exit()
-        sys.exit()
