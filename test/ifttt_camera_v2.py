@@ -17,6 +17,11 @@ def main():
 
     while True:
         camera_system.set_time()
+        camera_system.launch_camera()
+        camera_system.set_faces()
+        camera_system.set_eyes()
+        camera_system.surround_face()
+        camera_system.surround_eyes()
 
         if camera_system.is_eye_close():
             print("Eyes are colsing")
