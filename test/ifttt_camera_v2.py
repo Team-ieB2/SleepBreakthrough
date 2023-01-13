@@ -6,11 +6,10 @@ import GPIO.active_buzzer_test as active_buzzer
 KEY = "d-RW0to_f71L1cSRgRT7Y1MXg6ohfzf8N9udnWioJMW"
 LINE_EVENT = "line_event"
 TWITTER_EVENT = "post_tweet"
-ACTIVE_PIN = 11
+ACTIVE_PIN = 23
 
 def main():
     camera_system = camera.CameraTest()
-    sleep_time = 0
     ifttt_system = ifttt.IftttTest(KEY)
     active_buzzer_system = active_buzzer.ActiveBuzzer(ACTIVE_PIN)
     sleep_time_for_eye = 0
@@ -21,15 +20,12 @@ def main():
 
         if camera_system.is_eye_close():
             print("Eyes are colsing")
-            sleep_time += camera_system.count_close_eye_time() - camera_system.get_time()
             sleep_time_for_eye += camera_system.count_close_eye_time() - camera_system.get_time()
         else:
             print("Eyes are open")
-            sleep_time = camera_system.reset_count_close_eye_time()
             sleep_time_for_eye = camera_system.reset_count_close_eye_time()
 
         # if sleep_time - camera_system.get_time() >= 10:
-        if sleep_time >= 10:
         if sleep_time_for_eye >= 10:
             print("You are sleeping for eye close!")
             camera_system.set_sleep_frag()
@@ -37,10 +33,6 @@ def main():
 
         if camera_system.is_head_down():
             print("Head is down")
-            camera_system.count_head_down()
-            if camera_system.get_head_down_count() >= 20:
-                print("You are sleeping for head down!")
-                break
             sleep_time_for_head += camera_system.count_head_down_time() - camera_system.get_time()
         else:
             print("Head is up")
@@ -51,7 +43,6 @@ def main():
             camera_system.set_sleep_frag()
             break
 
-    camera_system.camera_release()
 
     if camera_system.get_sleep_frag():
         camera_system.camera_release()
