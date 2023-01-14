@@ -25,7 +25,7 @@ class SleepBreakthrough():
         """
         active_buzzer_pin_GPIO_number  = 23
         passive_buzzer_pin_GPIO_number =  7
-        ifttt_key = "bWxY8YDIyu6O_pyDNE61XJ"
+        ifttt_key = "d-RW0to_f71L1cSRgRT7Y1MXg6ohfzf8N9udnWioJMW"
         self.warning_speed = 60
         self.danger_speed = 80
         self.speeds = []
@@ -50,7 +50,42 @@ class SleepBreakthrough():
         """
         居眠り検出タスク
         """
-        pass
+        sleep_time_for_eye  = 0
+        sleep_time_for_head = 0
+        try:
+            self.camera.set_time()
+            self.camera.launch_camera()
+            self.camera.set_faces()
+            self.camera.set_eyes()
+            self.camera.surround_face()
+            self.camera.surround_eyes()
+
+            if self.camera.is_eye_close():
+                print("Eyes are closing")
+                sleep_time_for_eye += self.camera.count_close_eye_time() - self.camera.get_time()
+            else:
+                sleep_time_for_eye = self.camera.reset_count_close_eye_time()
+
+            if sleep_time_for_eye >= 10:
+                print("You are sleeping because your eyes are close!")
+                self.active_buzzer.warning_sound(1)
+                self.ifttt.ifttt_webhook("line_event", "居眠り運転")
+                self.ifttt.ifttt_webhook("post_tweet", "居眠り運転")
+            
+            if self.camera.is_head_down():
+                print("Head is down")
+                sleep_time_for_head += self.camera.count_head_down_time() - self.camera.get_time()
+            else:
+                print("Head is up")
+                sleep_time_for_head = self.camera.reset_count_head_down_time()
+
+            if sleep_time_for_head >= 10:
+                print("You are sleeping because your head is down")
+                self.active_buzzer.warning_sound(1)
+                self.ifttt.ifttt_webhook("line_event", "居眠り運転")
+                self.ifttt.ifttt_webhook("post_tweet", "居眠り運転")
+        except:
+            pass
 
     def speed_detection_task(self):
         """
