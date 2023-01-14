@@ -60,3 +60,15 @@ class OBD2():
                 pass
         except:
             pass
+
+    def get_connection_status(self):
+        try:
+            return self.connection.status()
+        except:
+            return OBDStatus.NOT_CONNECTED
+
+    def is_connected(self) -> bool:
+        if self.get_connection_status() == OBDStatus.CAR_CONNECTED:
+            return True
+        else:
+            return False
