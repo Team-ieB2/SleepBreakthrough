@@ -44,10 +44,7 @@ class OBD2():
             if self.connection.status() == OBDStatus.CAR_CONNECTED:
                 rpm = self.connection.query(obd.commands.RPM)
                 self.write_csv("RPM",rpm.value.magnitude)
-                if rpm.value.magnitude is None:
-                    return 0
-                else:
-                    return rpm.value.magnitude
+                return rpm.value.magnitude
             else:
                 pass
         except:
@@ -58,10 +55,7 @@ class OBD2():
             if self.connection.status() == OBDStatus.CAR_CONNECTED:
                 speed = self.connection.query(obd.commands.SPEED)
                 self.write_csv("SPEED",speed.value.magnitude)
-                if speed.value.magnitude is None:
-                    return 0
-                else:
-                    return speed.value.magnitude
+                return speed.value.magnitude
             else:
                 pass
         except:
