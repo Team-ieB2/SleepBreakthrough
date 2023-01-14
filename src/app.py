@@ -122,7 +122,8 @@ class SleepBreakthrough():
         """
         アプリケーションを終了する
         """
-        self.obd2.exit()
+        if self.obd2.is_connected():
+            self.obd2.exit()
         self.active_buzzer.destroy()
         self.passive_buzzer.destroy()
         GPIO.cleanup()
@@ -132,7 +133,8 @@ class SleepBreakthrough():
         """
         アプリケーションを強制終了する
         """
-        self.obd2.exit()
+        if self.obd2.is_connected():
+            self.obd2.exit()
         self.active_buzzer.destroy()
         self.passive_buzzer.destroy()
         GPIO.cleanup()
