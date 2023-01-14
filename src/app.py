@@ -50,6 +50,7 @@ class SleepBreakthrough():
         """
         居眠り検出タスク
         """
+        pass
 
     def speed_detection_task(self):
         """
@@ -71,7 +72,7 @@ class SleepBreakthrough():
                     pass
 
             self.speeds.append(speed)
-            time.sleep(0.25)
+            time.sleep(0.5)
         except:
             pass
 
