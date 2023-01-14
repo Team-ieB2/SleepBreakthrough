@@ -87,8 +87,8 @@ class SleepBreakthrough():
                 self.active_buzzer.warning_sound(1)
                 self.ifttt.ifttt_webhook("line_event", "居眠り運転")
                 self.ifttt.ifttt_webhook("post_tweet", "居眠り運転")
-        except:
-            pass
+        except KeyboardInterrupt:
+            self._exit()
 
     def speed_detection_task(self):
         """
@@ -111,8 +111,8 @@ class SleepBreakthrough():
 
             self.speeds.append(speed)
             time.sleep(0.5)
-        except:
-            pass
+        except KeyboardInterrupt:
+            self._exit()
 
     def exit(self):
         """
