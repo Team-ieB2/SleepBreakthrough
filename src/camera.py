@@ -25,8 +25,8 @@ class Camera():
         self.eyes = None
         self.face_frame = (255, 0, 0)
         self.eye_frame = (0, 0, 255)
-        self.face_cascade_path = os.path.abspath("camera/learningdata/haarcascade_frontalface_alt.xml")
-        self.eye_cascade_path = os.path.abspath("camera/learningdata/haarcascade_eye_tree_eyeglasses.xml")
+        self.face_cascade_path = os.path.abspath("learningdata/haarcascade_frontalface_alt.xml")
+        self.eye_cascade_path = os.path.abspath("learningdata/haarcascade_eye_tree_eyeglasses.xml")
         self.gray = None
         self.face_area = []
         self.sleep_frag = False
