@@ -113,6 +113,10 @@ class SleepBreakthrough():
             time.sleep(0.5)
         except KeyboardInterrupt:
             self._exit()
+        except TypeError:
+            pass
+        except AttributeError:
+            pass
 
     def exit(self):
         """
