@@ -74,6 +74,7 @@ class SleepBreakthrough():
                 self.active_buzzer.warning_sound(1)
                 self.ifttt.ifttt_webhook("line_event", "居眠り運転")
                 self.ifttt.ifttt_webhook("post_tweet", "居眠り運転")
+                sleep_time_for_eye = 0
 
             if self.camera.is_head_down():
                 print("Head is down")
@@ -87,6 +88,8 @@ class SleepBreakthrough():
                 self.active_buzzer.warning_sound(1)
                 self.ifttt.ifttt_webhook("line_event", "居眠り運転")
                 self.ifttt.ifttt_webhook("post_tweet", "居眠り運転")
+                sleep_time_for_head = 0
+
         except KeyboardInterrupt:
             self._exit()
 
