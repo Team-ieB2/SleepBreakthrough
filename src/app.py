@@ -40,11 +40,14 @@ class SleepBreakthrough():
         """
         アプリケーションを起動する
         """
-        while True:
-            # 居眠り検出スレッド
-            self.doze_detection_task()
-            # スピード違反検出スレッド
-            self.speed_detection_task()
+        try:
+            while True:
+                # 居眠り検出スレッド
+                self.doze_detection_task()
+                # スピード違反検出スレッド
+                self.speed_detection_task()
+        except KeyboardInterrupt:
+            self._exit()
 
     def doze_detection_task(self):
         """
@@ -71,7 +74,7 @@ class SleepBreakthrough():
                 self.active_buzzer.warning_sound(1)
                 self.ifttt.ifttt_webhook("line_event", "居眠り運転")
                 self.ifttt.ifttt_webhook("post_tweet", "居眠り運転")
-            
+
             if self.camera.is_head_down():
                 print("Head is down")
                 sleep_time_for_head += self.camera.count_head_down_time() - self.camera.get_time()

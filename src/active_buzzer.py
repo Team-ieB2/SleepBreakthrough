@@ -31,15 +31,18 @@ class ActiveBuzzer:
         Args:
             time (int): 鳴らす時間
         """
-        start = time.time()
-        while True:
-            GPIO.output(self.buzzer_pin, GPIO.HIGH)
-            time.sleep(0.5)
-            GPIO.output(self.buzzer_pin, GPIO.LOW)
-            time.sleep(0.5)
-            now = time.time()
-            if (now - start >= con_time):
-                break
+        try:
+            start = time.time()
+            while True:
+                GPIO.output(self.buzzer_pin, GPIO.HIGH)
+                time.sleep(0.5)
+                GPIO.output(self.buzzer_pin, GPIO.LOW)
+                time.sleep(0.5)
+                now = time.time()
+                if (now - start >= con_time):
+                    break
+        except KeyboardInterrupt:
+            pass
 
     def destroy(self):
         """
