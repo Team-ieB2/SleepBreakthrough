@@ -69,7 +69,7 @@ class SleepBreakthrough():
             else:
                 sleep_time_for_eye = self.camera.reset_count_close_eye_time()
 
-            if sleep_time_for_eye >= 10:
+            if sleep_time_for_eye >= 2:
                 print("You are sleeping because your eyes are close!")
                 self.active_buzzer.warning_sound(1)
                 self.ifttt.ifttt_webhook("line_event", "居眠り運転")
@@ -82,7 +82,7 @@ class SleepBreakthrough():
                 print("Head is up")
                 sleep_time_for_head = self.camera.reset_count_head_down_time()
 
-            if sleep_time_for_head >= 10:
+            if sleep_time_for_head >= 2:
                 print("You are sleeping because your head is down")
                 self.active_buzzer.warning_sound(1)
                 self.ifttt.ifttt_webhook("line_event", "居眠り運転")
