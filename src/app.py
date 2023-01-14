@@ -42,9 +42,9 @@ class SleepBreakthrough():
         """
         while True:
             # 居眠り検出スレッド
-            Thread(target=self.doze_detection_task).start()
+            self.doze_detection_task()
             # スピード違反検出スレッド
-            Thread(target=self.speed_detection_task).start()
+            self.speed_detection_task()
 
     def doze_detection_task(self):
         """
