@@ -46,6 +46,4 @@ $ sudo reboot
 * e215726@ie.u-ryukyu.ac.jp
 
 # License
-ライセンスを明示する
- 
 "SleepBreakthrough" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
